@@ -37,8 +37,8 @@ public class IndexGroupBuyMarketServiceImpl implements IIndexGroupBuyMarketServi
         return strategyHandler.apply(marketProductEntity, new DefaultActivityStrategyFactory.DynamicContext());
     }
 
-    @Override
-    public List<UserGroupBuyOrderDetailEntity> queryInProgressUserGroupBuyOrderDetailList(Long activityId, String userId, Integer ownerCount, Integer randomCount) {
+//    @Override
+//    public List<UserGroupBuyOrderDetailEntity> queryInProgressUserGroupBuyOrderDetailList(Long activityId, String userId, Integer ownerCount, Integer randomCount) {
 //        List<UserGroupBuyOrderDetailEntity> unionAllList = new ArrayList<>();
 //
 //        // 查询个人拼团数据
@@ -58,8 +58,8 @@ public class IndexGroupBuyMarketServiceImpl implements IIndexGroupBuyMarketServi
 //        }
 
 //        return unionAllList;
-        return null;
-    }
+//        return null;
+//    }
 
 //    @Override
 //    public TeamStatisticVO queryTeamStatisticByActivityId(Long activityId) {

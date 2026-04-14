@@ -13,6 +13,8 @@ import com.qcby.infrastructure.dao.po.GroupBuyActivity;
 import com.qcby.infrastructure.dao.po.GroupBuyDiscount;
 import com.qcby.infrastructure.dao.po.SCSkuActivity;
 import com.qcby.infrastructure.dao.po.Sku;
+import com.qcby.infrastructure.redis.IRedisService;
+import org.redisson.api.RBitSet;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.repository.AbstractRepository;
 
@@ -34,8 +36,8 @@ public class ActivityRepository implements IActivityRepository {
     private ISkuDao skuDao;
     @Resource
     private ISCSkuActivityDao skuActivityDao;
-//    @Resource
-//    private IRedisService redisService;
+    @Resource
+    private IRedisService redisService;
 //    @Resource
 //    private DCCService dccService;
 //    @Resource
@@ -147,15 +149,15 @@ public class ActivityRepository implements IActivityRepository {
                 .goodsId(scSkuActivity.getGoodsId())
                 .build();
     }
-//
-//    @Override
-//    public boolean isTagCrowdRange(String tagId, String userId) {
-//        RBitSet bitSet = redisService.getBitSet(tagId);
-//        if (!bitSet.isExists()) return true;
-//        // 判断用户是否存在人群中
-//        return bitSet.get(redisService.getIndexFromUserId(userId));
-//    }
-//
+
+    @Override
+    public boolean isTagCrowdRange(String tagId, String userId) {
+        RBitSet bitSet = redisService.getBitSet(tagId);
+        if (!bitSet.isExists()) return true;
+        // 判断用户是否存在人群中
+        return bitSet.get(redisService.getIndexFromUserId(userId));
+    }
+
 //    @Override
 //    public boolean downgradeSwitch() {
 //        return dccService.isDowngradeSwitch();

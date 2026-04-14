@@ -41,8 +41,8 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
     @Resource
     private ErrorNode errorNode;
-//    @Resource
-//    private TagNode tagNode;
+    @Resource
+    private TagNode tagNode;
 
     /**
      * 在 MarketNode2CompletableFuture 继承的子类实现一个 CompletableFuture 多线程方式。
@@ -118,8 +118,8 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
             return errorNode;
         }
 
-//        return tagNode;
-        return endNode;
+        return tagNode;
+//        return endNode;
     }
 
 }
