@@ -3,12 +3,15 @@ package com.qcby.infrastructure.adapter.repository;
 import com.qcby.domain.activity.adapter.repository.IActivityRepository;
 import com.qcby.domain.activity.model.valobj.DiscountTypeEnum;
 import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.qcby.domain.activity.model.valobj.SCSkuActivityVO;
 import com.qcby.domain.activity.model.valobj.SkuVO;
 import com.qcby.infrastructure.dao.IGroupBuyActivityDao;
 import com.qcby.infrastructure.dao.IGroupBuyDiscountDao;
+import com.qcby.infrastructure.dao.ISCSkuActivityDao;
 import com.qcby.infrastructure.dao.ISkuDao;
 import com.qcby.infrastructure.dao.po.GroupBuyActivity;
 import com.qcby.infrastructure.dao.po.GroupBuyDiscount;
+import com.qcby.infrastructure.dao.po.SCSkuActivity;
 import com.qcby.infrastructure.dao.po.Sku;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.repository.AbstractRepository;
@@ -29,8 +32,8 @@ public class ActivityRepository implements IActivityRepository {
     private IGroupBuyDiscountDao groupBuyDiscountDao;
     @Resource
     private ISkuDao skuDao;
-//    @Resource
-//    private ISCSkuActivityDao skuActivityDao;
+    @Resource
+    private ISCSkuActivityDao skuActivityDao;
 //    @Resource
 //    private IRedisService redisService;
 //    @Resource
@@ -41,7 +44,7 @@ public class ActivityRepository implements IActivityRepository {
 //    private IGroupBuyOrderListDao groupBuyOrderListDao;
 
     @Override
-    public GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(String source, String channel) {
+    public GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId) {
 //        // 优先从缓存获取&写缓存，注意如果实现了后台配置，在更新时要更库，删缓存。
 //        GroupBuyActivity groupBuyActivityRes = getFromCacheOrDb(GroupBuyActivity.cacheRedisKey(activityId),
 //                () -> groupBuyActivityDao.queryValidGroupBuyActivityId(activityId));
@@ -81,14 +84,15 @@ public class ActivityRepository implements IActivityRepository {
 //                .build();
 
         // 根据SC渠道值查询配置中最新的1个有效的活动
-        GroupBuyActivity groupBuyActivityReq = new GroupBuyActivity();
-        groupBuyActivityReq.setSource(source);
-        groupBuyActivityReq.setChannel(channel);
-        GroupBuyActivity groupBuyActivityRes = groupBuyActivityDao.queryValidGroupBuyActivity(groupBuyActivityReq);
+
+        GroupBuyActivity groupBuyActivityRes = groupBuyActivityDao.queryValidGroupBuyActivityId(activityId);
+        if (null == groupBuyActivityRes) return null;
 
         String discountId = groupBuyActivityRes.getDiscountId();
 
         GroupBuyDiscount groupBuyDiscountRes = groupBuyDiscountDao.queryGroupBuyActivityDiscountByDiscountId(discountId);
+        if (null == groupBuyDiscountRes) return null;
+
         GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount = GroupBuyActivityDiscountVO.GroupBuyDiscount.builder()
                 .discountName(groupBuyDiscountRes.getDiscountName())
                 .discountDesc(groupBuyDiscountRes.getDiscountDesc())
@@ -101,9 +105,6 @@ public class ActivityRepository implements IActivityRepository {
         return GroupBuyActivityDiscountVO.builder()
                 .activityId(groupBuyActivityRes.getActivityId())
                 .activityName(groupBuyActivityRes.getActivityName())
-                .source(groupBuyActivityRes.getSource())
-                .channel(groupBuyActivityRes.getChannel())
-                .goodsId(groupBuyActivityRes.getGoodsId())
                 .groupBuyDiscount(groupBuyDiscount)
                 .groupType(groupBuyActivityRes.getGroupType())
                 .takeLimitCount(groupBuyActivityRes.getTakeLimitCount())
@@ -129,23 +130,23 @@ public class ActivityRepository implements IActivityRepository {
                 .build();
     }
 
-//    @Override
-//    public SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId) {
-//        SCSkuActivity scSkuActivityReq = new SCSkuActivity();
-//        scSkuActivityReq.setSource(source);
-//        scSkuActivityReq.setChannel(channel);
-//        scSkuActivityReq.setGoodsId(goodsId);
-//
-//        SCSkuActivity scSkuActivity = skuActivityDao.querySCSkuActivityBySCGoodsId(scSkuActivityReq);
-//        if (null == scSkuActivity) return null;
-//
-//        return SCSkuActivityVO.builder()
-//                .source(scSkuActivity.getSource())
-//                .chanel(scSkuActivity.getChannel())
-//                .activityId(scSkuActivity.getActivityId())
-//                .goodsId(scSkuActivity.getGoodsId())
-//                .build();
-//    }
+    @Override
+    public SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId) {
+        SCSkuActivity scSkuActivityReq = new SCSkuActivity();
+        scSkuActivityReq.setSource(source);
+        scSkuActivityReq.setChannel(channel);
+        scSkuActivityReq.setGoodsId(goodsId);
+
+        SCSkuActivity scSkuActivity = skuActivityDao.querySCSkuActivityBySCGoodsId(scSkuActivityReq);
+        if (null == scSkuActivity) return null;
+
+        return SCSkuActivityVO.builder()
+                .source(scSkuActivity.getSource())
+                .chanel(scSkuActivity.getChannel())
+                .activityId(scSkuActivity.getActivityId())
+                .goodsId(scSkuActivity.getGoodsId())
+                .build();
+    }
 //
 //    @Override
 //    public boolean isTagCrowdRange(String tagId, String userId) {

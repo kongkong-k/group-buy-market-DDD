@@ -3,6 +3,7 @@ package com.qcby.domain.activity.service.trial.thread;
 
 import com.qcby.domain.activity.adapter.repository.IActivityRepository;
 import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.qcby.domain.activity.model.valobj.SCSkuActivityVO;
 
 import java.util.concurrent.Callable;
 
@@ -29,7 +30,7 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
     /**
      * 商品ID
      */
-//    private final String goodsId;
+    private final String goodsId;
 
     /**
      * 活动仓储
@@ -40,7 +41,7 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
 //        this.activityId = activityId;
         this.source = source;
         this.channel = channel;
-//        this.goodsId = goodsId;
+        this.goodsId = goodsId;
         this.activityRepository = activityRepository;
     }
 
@@ -54,8 +55,12 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
 //            if (null == scSkuActivityVO) return null;
 //            availableActivityId = scSkuActivityVO.getActivityId();
 //        }
-//        // 查询活动配置
-        return activityRepository.queryGroupBuyActivityDiscountVO(source, channel);
+
+        SCSkuActivityVO scSkuActivityVO = activityRepository.querySCSkuActivityBySCGoodsId(source, channel, goodsId);
+        if (null == scSkuActivityVO) return null;
+
+        // 查询活动配置
+        return activityRepository.queryGroupBuyActivityDiscountVO(scSkuActivityVO.getActivityId());
     }
 
 }

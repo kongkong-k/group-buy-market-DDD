@@ -39,8 +39,8 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
      */
     @Resource
     private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
-//    @Resource
-//    private ErrorNode errorNode;
+    @Resource
+    private ErrorNode errorNode;
 //    @Resource
 //    private TagNode tagNode;
 
@@ -73,10 +73,10 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
         threadPoolExecutor.execute(skuVOFutureTask);
 
         // 写入上下文 - 对于一些复杂场景，获取数据的操作，有时候会在下N个节点获取，这样前置查询数据，可以提高接口响应效率
-//        dynamicContext.setGroupBuyActivityDiscountVO(groupBuyActivityDiscountVOFutureTask.get(timeout, TimeUnit.MILLISECONDS));
-//        dynamicContext.setSkuVO(skuVOFutureTask.get(timeout, TimeUnit.MILLISECONDS));
-        dynamicContext.setGroupBuyActivityDiscountVO(groupBuyActivityDiscountVOFutureTask.get());
-        dynamicContext.setSkuVO(skuVOFutureTask.get());
+        dynamicContext.setGroupBuyActivityDiscountVO(groupBuyActivityDiscountVOFutureTask.get(timeout, TimeUnit.MILLISECONDS));
+        dynamicContext.setSkuVO(skuVOFutureTask.get(timeout, TimeUnit.MILLISECONDS));
+//        dynamicContext.setGroupBuyActivityDiscountVO(groupBuyActivityDiscountVOFutureTask.get());
+//        dynamicContext.setSkuVO(skuVOFutureTask.get());
 
         log.info("拼团商品查询试算服务-MarketNode userId:{} 异步线程加载数据「GroupBuyActivityDiscountVO、SkuVO」完成", requestParameter.getUserId());
     }
@@ -113,11 +113,11 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
     @Override
     public StrategyHandler<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> get(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
-//        // 不存在配置的拼团活动，走异常节点
-//        if (null == dynamicContext.getGroupBuyActivityDiscountVO() || null == dynamicContext.getSkuVO() || null == dynamicContext.getDeductionPrice()) {
-//            return errorNode;
-//        }
-//
+        // 不存在配置的拼团活动，走异常节点
+        if (null == dynamicContext.getGroupBuyActivityDiscountVO() || null == dynamicContext.getSkuVO() || null == dynamicContext.getDeductionPrice()) {
+            return errorNode;
+        }
+
 //        return tagNode;
         return endNode;
     }

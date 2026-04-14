@@ -3,6 +3,7 @@ package com.qcby.domain.activity.adapter.repository;
 
 import com.qcby.domain.activity.model.entity.UserGroupBuyOrderDetailEntity;
 import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.qcby.domain.activity.model.valobj.SCSkuActivityVO;
 import com.qcby.domain.activity.model.valobj.SkuVO;
 
 import java.util.List;
@@ -12,12 +13,12 @@ import java.util.List;
  */
 public interface IActivityRepository {
 
-    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(String source, String channel);
+    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId);
 
     SkuVO querySkuByGoodsId(String goodsId);
 
-//    SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId);
-//
+    SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId);
+
 //    boolean isTagCrowdRange(String tagId, String userId);
 //
 //    boolean downgradeSwitch();
