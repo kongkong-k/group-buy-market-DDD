@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 import sun.reflect.generics.repository.AbstractRepository;
 
 import javax.annotation.Resource;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Fuzhengwei bugstack.cn @小傅哥
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
  * @create 2024-12-21 10:10
  */
 @Repository
-public class ActivityRepository extends AbstractRepository implements IActivityRepository {
+public class ActivityRepository implements IActivityRepository {
 
     @Resource
     private IGroupBuyActivityDao groupBuyActivityDao;
@@ -42,7 +40,7 @@ public class ActivityRepository extends AbstractRepository implements IActivityR
 //    private IGroupBuyOrderListDao groupBuyOrderListDao;
 
     @Override
-    public GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId) {
+    public GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(String source, String channel) {
 //        // 优先从缓存获取&写缓存，注意如果实现了后台配置，在更新时要更库，删缓存。
 //        GroupBuyActivity groupBuyActivityRes = getFromCacheOrDb(GroupBuyActivity.cacheRedisKey(activityId),
 //                () -> groupBuyActivityDao.queryValidGroupBuyActivityId(activityId));

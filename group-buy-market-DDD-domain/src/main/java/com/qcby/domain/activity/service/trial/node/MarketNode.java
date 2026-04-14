@@ -1,5 +1,6 @@
 package com.qcby.domain.activity.service.trial.node;
 
+import com.alibaba.fastjson.JSON;
 import com.qcby.domain.activity.model.entity.MarketProductEntity;
 import com.qcby.domain.activity.model.entity.TrialBalanceEntity;
 import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
@@ -26,15 +27,19 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
     @Resource
     private ThreadPoolExecutor threadPoolExecutor;
+
+    @Resource
+    private EndNode endNode;
+
     /**
      * <a href="https://bugstack.cn/md/road-map/spring-dependency-injection.html">Spring 注入详细说明</a>
      */
 //    @Resource
 //    private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
-    @Resource
-    private ErrorNode errorNode;
-    @Resource
-    private TagNode tagNode;
+//    @Resource
+//    private ErrorNode errorNode;
+//    @Resource
+//    private TagNode tagNode;
 
     /**
      * 在 MarketNode2CompletableFuture 继承的子类实现一个 CompletableFuture 多线程方式。
@@ -73,7 +78,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
     @Override
     public TrialBalanceEntity doApply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
-//        log.info("拼团商品查询试算服务-MarketNode userId:{} requestParameter:{}", requestParameter.getUserId(), JSON.toJSONString(requestParameter));
+        log.info("拼团商品查询试算服务-MarketNode userId:{} requestParameter:{}", requestParameter.getUserId(), JSON.toJSONString(requestParameter));
 //
 //        // 获取上下文数据
 //        GroupBuyActivityDiscountVO groupBuyActivityDiscountVO = dynamicContext.getGroupBuyActivityDiscountVO();
@@ -99,8 +104,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 //        dynamicContext.setDeductionPrice(skuVO.getOriginalPrice().subtract(payPrice));
 //        dynamicContext.setPayPrice(payPrice);
 //
-//        return router(requestParameter, dynamicContext);
-        return null;
+        return router(requestParameter, dynamicContext);
     }
 
     @Override
@@ -111,7 +115,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 //        }
 //
 //        return tagNode;
-        return null;
+        return endNode;
     }
 
 }
