@@ -14,7 +14,7 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
     /**
      * 活动ID
      */
-    private final Long activityId;
+//    private final Long activityId;
 
     /**
      * 来源
@@ -29,7 +29,7 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
     /**
      * 商品ID
      */
-    private final String goodsId;
+//    private final String goodsId;
 
     /**
      * 活动仓储
@@ -37,10 +37,10 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
     private final IActivityRepository activityRepository;
 
     public QueryGroupBuyActivityDiscountVOThreadTask(Long activityId, String source, String channel, String goodsId, IActivityRepository activityRepository) {
-        this.activityId = activityId;
+//        this.activityId = activityId;
         this.source = source;
         this.channel = channel;
-        this.goodsId = goodsId;
+//        this.goodsId = goodsId;
         this.activityRepository = activityRepository;
     }
 
@@ -55,8 +55,7 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
 //            availableActivityId = scSkuActivityVO.getActivityId();
 //        }
 //        // 查询活动配置
-//        return activityRepository.queryGroupBuyActivityDiscountVO(availableActivityId);
-        return null;
+        return activityRepository.queryGroupBuyActivityDiscountVO(source, channel);
     }
 
 }

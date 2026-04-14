@@ -129,12 +129,12 @@ public class GroupBuyActivityDiscountVO {
         /**
          * 折扣类型（0:base、1:tag）
          */
-//        private DiscountTypeEnum discountType;
+        private DiscountTypeEnum discountType;
 
         /**
          * 折扣类型（0:base、1:tag）
          */
-        private Byte discountType;
+//        private Byte discountType;
 
 
         /**
