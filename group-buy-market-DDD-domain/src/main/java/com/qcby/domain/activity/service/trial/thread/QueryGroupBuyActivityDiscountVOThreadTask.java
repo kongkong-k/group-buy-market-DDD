@@ -1,6 +1,11 @@
 package com.qcby.domain.activity.service.trial.thread;
 
 
+import com.qcby.domain.activity.adapter.repository.IActivityRepository;
+import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+
+import java.util.concurrent.Callable;
+
 /**
  * @description 查询营销配置任务
  */
@@ -41,16 +46,17 @@ public class QueryGroupBuyActivityDiscountVOThreadTask implements Callable<Group
 
     @Override
     public GroupBuyActivityDiscountVO call() throws Exception {
-        // 判断是否存在可用的活动ID
-        Long availableActivityId = activityId;
-        if (null == activityId){
-            // 查询渠道商品活动配置关联配置
-            SCSkuActivityVO scSkuActivityVO = activityRepository.querySCSkuActivityBySCGoodsId(source, channel, goodsId);
-            if (null == scSkuActivityVO) return null;
-            availableActivityId = scSkuActivityVO.getActivityId();
-        }
-        // 查询活动配置
-        return activityRepository.queryGroupBuyActivityDiscountVO(availableActivityId);
+//        // 判断是否存在可用的活动ID
+//        Long availableActivityId = activityId;
+//        if (null == activityId){
+//            // 查询渠道商品活动配置关联配置
+//            SCSkuActivityVO scSkuActivityVO = activityRepository.querySCSkuActivityBySCGoodsId(source, channel, goodsId);
+//            if (null == scSkuActivityVO) return null;
+//            availableActivityId = scSkuActivityVO.getActivityId();
+//        }
+//        // 查询活动配置
+//        return activityRepository.queryGroupBuyActivityDiscountVO(availableActivityId);
+        return null;
     }
 
 }

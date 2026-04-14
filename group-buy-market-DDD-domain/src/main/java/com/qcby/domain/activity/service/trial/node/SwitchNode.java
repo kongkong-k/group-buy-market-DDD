@@ -23,7 +23,7 @@ public class SwitchNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     private MarketNode marketNode;
 
     @Override
-    public TrialBalanceEntity apply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
+    public TrialBalanceEntity doApply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
 //        log.info("拼团商品查询试算服务-SwitchNode userId:{} requestParameter:{}", requestParameter.getUserId(), JSON.toJSONString(requestParameter));
 //
 //        // 根据用户ID切量
@@ -41,15 +41,12 @@ public class SwitchNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 //            throw new AppException(ResponseCode.E0004.getCode(), ResponseCode.E0004.getInfo());
 //        }
 //
-//        return router(requestParameter, dynamicContext);
-
-        return null;
+        return router(requestParameter, dynamicContext);
     }
 
     @Override
     public StrategyHandler<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> get(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
-//        return marketNode;
-        return null;
+        return marketNode;
     }
 
 }

@@ -2,6 +2,8 @@ package com.qcby.domain.activity.service.trial.factory;
 
 import com.qcby.domain.activity.model.entity.MarketProductEntity;
 import com.qcby.domain.activity.model.entity.TrialBalanceEntity;
+import com.qcby.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.qcby.domain.activity.model.valobj.SkuVO;
 import com.qcby.domain.activity.service.trial.node.RootNode;
 import com.qcby.types.design.framework.tree.StrategyHandler;
 import lombok.AllArgsConstructor;
@@ -34,18 +36,18 @@ public class DefaultActivityStrategyFactory {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DynamicContext {
-//        // 拼团活动营销配置值对象
-//        private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
-//        // 商品信息
-//        private SkuVO skuVO;
-//        // 折扣金额
-//        private BigDecimal deductionPrice;
-//        // 支付金额
-//        private BigDecimal payPrice;
-//        // 活动可见性限制
-//        private boolean visible;
-//        // 活动
-//        private boolean enable;
+        // 拼团活动营销配置值对象
+        private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
+        // 商品信息
+        private SkuVO skuVO;
+        // 折扣金额
+        private BigDecimal deductionPrice;
+        // 支付金额
+        private BigDecimal payPrice;
+        // 活动可见性限制
+        private boolean visible;
+        // 活动
+        private boolean enable;
     }
 
 }

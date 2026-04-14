@@ -1,5 +1,10 @@
 package com.qcby.domain.activity.service.trial.thread;
 
+import com.qcby.domain.activity.adapter.repository.IActivityRepository;
+import com.qcby.domain.activity.model.valobj.SkuVO;
+
+import java.util.concurrent.Callable;
+
 /**
  * @description 查询商品信息任务
  */
