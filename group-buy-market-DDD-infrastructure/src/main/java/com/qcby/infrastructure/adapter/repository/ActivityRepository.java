@@ -13,6 +13,7 @@ import com.qcby.infrastructure.dao.po.GroupBuyActivity;
 import com.qcby.infrastructure.dao.po.GroupBuyDiscount;
 import com.qcby.infrastructure.dao.po.SCSkuActivity;
 import com.qcby.infrastructure.dao.po.Sku;
+import com.qcby.infrastructure.dcc.DCCService;
 import com.qcby.infrastructure.redis.IRedisService;
 import org.redisson.api.RBitSet;
 import org.springframework.stereotype.Repository;
@@ -38,8 +39,8 @@ public class ActivityRepository implements IActivityRepository {
     private ISCSkuActivityDao skuActivityDao;
     @Resource
     private IRedisService redisService;
-//    @Resource
-//    private DCCService dccService;
+    @Resource
+    private DCCService dccService;
 //    @Resource
 //    private IGroupBuyOrderDao groupBuyOrderDao;
 //    @Resource
@@ -158,16 +159,16 @@ public class ActivityRepository implements IActivityRepository {
         return bitSet.get(redisService.getIndexFromUserId(userId));
     }
 
-//    @Override
-//    public boolean downgradeSwitch() {
-//        return dccService.isDowngradeSwitch();
-//    }
-//
-//    @Override
-//    public boolean cutRange(String userId) {
-//        return dccService.isCutRange(userId);
-//    }
-//
+    @Override
+    public boolean downgradeSwitch() {
+        return dccService.isDowngradeSwitch();
+    }
+
+    @Override
+    public boolean cutRange(String userId) {
+        return dccService.isCutRange(userId);
+    }
+
 //    @Override
 //    public List<UserGroupBuyOrderDetailEntity> queryInProgressUserGroupBuyOrderDetailListByOwner(Long activityId, String userId, Integer ownerCount) {
 //        // 1. 根据用户ID、活动ID，查询用户参与的拼团队伍
