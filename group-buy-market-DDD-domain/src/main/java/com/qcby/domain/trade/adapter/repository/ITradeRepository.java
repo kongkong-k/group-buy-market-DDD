@@ -3,6 +3,7 @@ package com.qcby.domain.trade.adapter.repository;
 
 import com.qcby.domain.activity.model.entity.UserGroupBuyOrderDetailEntity;
 import com.qcby.domain.trade.model.aggregate.GroupBuyOrderAggregate;
+import com.qcby.domain.trade.model.entity.GroupBuyActivityEntity;
 import com.qcby.domain.trade.model.entity.MarketPayOrderEntity;
 import com.qcby.domain.trade.model.valobj.GroupBuyProgressVO;
 
@@ -19,10 +20,10 @@ public interface ITradeRepository {
 
     GroupBuyProgressVO queryGroupBuyProgress(String teamId);
 
-//    GroupBuyActivityEntity queryGroupBuyActivityEntityByActivityId(Long activityId);
-//
-//    Integer queryOrderCountByActivityId(Long activityId, String userId);
-//
+    GroupBuyActivityEntity queryGroupBuyActivityEntityByActivityId(Long activityId);
+
+    Integer queryOrderCountByActivityId(Long activityId, String userId);
+
 //    GroupBuyTeamEntity queryGroupBuyTeamByTeamId(String teamId);
 //
 //    NotifyTaskEntity settlementMarketPayOrder(GroupBuyTeamSettlementAggregate groupBuyTeamSettlementAggregate);

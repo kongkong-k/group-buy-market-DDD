@@ -53,7 +53,7 @@ public class MarketTradeControllerTest {
     public void test_lockMarketPayOrder_teamId_not_null() {
         LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO = new LockMarketPayOrderRequestDTO();
         lockMarketPayOrderRequestDTO.setUserId("haha");
-        lockMarketPayOrderRequestDTO.setTeamId("87093580");
+        lockMarketPayOrderRequestDTO.setTeamId("38435308");
         lockMarketPayOrderRequestDTO.setActivityId(100123L);
         lockMarketPayOrderRequestDTO.setGoodsId("9890001");
         lockMarketPayOrderRequestDTO.setSource("s01");
@@ -69,7 +69,7 @@ public class MarketTradeControllerTest {
     @Test
     public void test_lockMarketPayOrder_mq() throws InterruptedException {
         LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO = new LockMarketPayOrderRequestDTO();
-        lockMarketPayOrderRequestDTO.setUserId("kk01");
+        lockMarketPayOrderRequestDTO.setUserId("kongkong");
         lockMarketPayOrderRequestDTO.setTeamId(null);
         lockMarketPayOrderRequestDTO.setActivityId(100123L);
         lockMarketPayOrderRequestDTO.setGoodsId("9890001");

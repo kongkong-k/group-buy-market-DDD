@@ -35,8 +35,7 @@ public abstract class AbstractDiscountCalculateService implements IDiscountCalcu
 
     // 人群过滤 - 限定人群优惠
     private boolean filterTagId(String userId, String tagId) {
-        return true;
-//        return repository.isTagCrowdRange(tagId, userId);
+        return repository.isTagCrowdRange(tagId, userId);
     }
 
     protected abstract BigDecimal doCalculate(BigDecimal originalPrice, GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount);
