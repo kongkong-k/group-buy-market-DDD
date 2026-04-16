@@ -30,8 +30,8 @@ public interface ITradeRepository {
 
     void settlementMarketPayOrder(GroupBuyTeamSettlementAggregate groupBuyTeamSettlementAggregate);
 
-//    boolean isSCBlackIntercept(String source, String channel);
-//
+    boolean isSCBlackIntercept(String source, String channel);
+
 //    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList();
 //
 //    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList(String teamId);

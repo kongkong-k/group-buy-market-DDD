@@ -101,9 +101,17 @@ public class MarketTradeController implements IMarketTradeService {
                     .build());
 
 
+            // 人群限定
+            if (!trialBalanceEntity.getIsVisible() || !trialBalanceEntity.getIsEnable()){
+                return Response.<LockMarketPayOrderResponseDTO>builder()
+                        .code(ResponseCode.E0007.getCode())
+                        .info(ResponseCode.E0007.getInfo())
+                        .build();
+            }
+
             GroupBuyActivityDiscountVO groupBuyActivityDiscountVO = trialBalanceEntity.getGroupBuyActivityDiscountVO();
 
-            // 锁单
+            // 营销优惠锁单
             marketPayOrderEntity = tradeOrderService.lockMarketPayOrder(
                     UserEntity.builder().userId(userId).build(),
                     PayActivityEntity.builder()
@@ -112,6 +120,7 @@ public class MarketTradeController implements IMarketTradeService {
                             .activityName(groupBuyActivityDiscountVO.getActivityName())
                             .startTime(groupBuyActivityDiscountVO.getStartTime())
                             .endTime(groupBuyActivityDiscountVO.getEndTime())
+                            .validTime(groupBuyActivityDiscountVO.getValidTime())
                             .targetCount(groupBuyActivityDiscountVO.getTarget())
                             .build(),
                     PayDiscountEntity.builder()
