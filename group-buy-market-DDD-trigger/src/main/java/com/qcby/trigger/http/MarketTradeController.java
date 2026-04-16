@@ -14,7 +14,7 @@ import com.qcby.domain.trade.model.entity.PayActivityEntity;
 import com.qcby.domain.trade.model.entity.PayDiscountEntity;
 import com.qcby.domain.trade.model.entity.UserEntity;
 import com.qcby.domain.trade.model.valobj.GroupBuyProgressVO;
-import com.qcby.domain.trade.service.ITradeOrderService;
+import com.qcby.domain.trade.service.ITradeLockOrderService;
 import com.qcby.types.enums.ResponseCode;
 import com.qcby.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class MarketTradeController implements IMarketTradeService {
     private IIndexGroupBuyMarketService indexGroupBuyMarketService;
 
     @Resource
-    private ITradeOrderService tradeOrderService;
+    private ITradeLockOrderService tradeOrderService;
 
     @RequestMapping(value = "lock_market_pay_order", method = RequestMethod.POST)
     @Override

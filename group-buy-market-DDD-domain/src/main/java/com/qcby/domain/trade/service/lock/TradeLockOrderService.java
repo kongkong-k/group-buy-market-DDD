@@ -1,10 +1,11 @@
-package com.qcby.domain.trade.service;
+package com.qcby.domain.trade.service.lock;
 
 import com.qcby.domain.trade.adapter.repository.ITradeRepository;
 import com.qcby.domain.trade.model.aggregate.GroupBuyOrderAggregate;
 import com.qcby.domain.trade.model.entity.*;
 import com.qcby.domain.trade.model.valobj.GroupBuyProgressVO;
-import com.qcby.domain.trade.service.factory.TradeRuleFilterFactory;
+import com.qcby.domain.trade.service.ITradeLockOrderService;
+import com.qcby.domain.trade.service.lock.factory.TradeRuleFilterFactory;
 import com.qcby.types.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
 
 @Slf4j
 @Service
-public class TradeOrderService implements ITradeOrderService {
+public class TradeLockOrderService implements ITradeLockOrderService {
 
 //    private static final Logger log = LoggerFactory.getLogger(TradeOrderService.class);
     @Resource

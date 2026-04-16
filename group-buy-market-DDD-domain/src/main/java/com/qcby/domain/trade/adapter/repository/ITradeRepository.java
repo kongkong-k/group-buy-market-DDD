@@ -3,7 +3,9 @@ package com.qcby.domain.trade.adapter.repository;
 
 import com.qcby.domain.activity.model.entity.UserGroupBuyOrderDetailEntity;
 import com.qcby.domain.trade.model.aggregate.GroupBuyOrderAggregate;
+import com.qcby.domain.trade.model.aggregate.GroupBuyTeamSettlementAggregate;
 import com.qcby.domain.trade.model.entity.GroupBuyActivityEntity;
+import com.qcby.domain.trade.model.entity.GroupBuyTeamEntity;
 import com.qcby.domain.trade.model.entity.MarketPayOrderEntity;
 import com.qcby.domain.trade.model.valobj.GroupBuyProgressVO;
 
@@ -24,10 +26,10 @@ public interface ITradeRepository {
 
     Integer queryOrderCountByActivityId(Long activityId, String userId);
 
-//    GroupBuyTeamEntity queryGroupBuyTeamByTeamId(String teamId);
-//
-//    NotifyTaskEntity settlementMarketPayOrder(GroupBuyTeamSettlementAggregate groupBuyTeamSettlementAggregate);
-//
+    GroupBuyTeamEntity queryGroupBuyTeamByTeamId(String teamId);
+
+    void settlementMarketPayOrder(GroupBuyTeamSettlementAggregate groupBuyTeamSettlementAggregate);
+
 //    boolean isSCBlackIntercept(String source, String channel);
 //
 //    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList();
