@@ -33,5 +33,7 @@ public class GroupBuyTeamEntity {
     private Date validStartTime;
     /** 拼团结束时间 拼团有效时间 */
     private Date validEndTime;
+    /** 回调通知（HTTP 方式回调，地址不可为空） */
+    private String notifyUrl;
 
 }

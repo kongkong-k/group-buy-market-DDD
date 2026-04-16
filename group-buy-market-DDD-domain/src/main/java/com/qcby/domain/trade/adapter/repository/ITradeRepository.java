@@ -7,6 +7,7 @@ import com.qcby.domain.trade.model.aggregate.GroupBuyTeamSettlementAggregate;
 import com.qcby.domain.trade.model.entity.GroupBuyActivityEntity;
 import com.qcby.domain.trade.model.entity.GroupBuyTeamEntity;
 import com.qcby.domain.trade.model.entity.MarketPayOrderEntity;
+import com.qcby.domain.trade.model.entity.NotifyTaskEntity;
 import com.qcby.domain.trade.model.valobj.GroupBuyProgressVO;
 
 import java.util.List;
@@ -32,15 +33,15 @@ public interface ITradeRepository {
 
     boolean isSCBlackIntercept(String source, String channel);
 
-//    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList();
-//
-//    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList(String teamId);
-//
-//    int updateNotifyTaskStatusSuccess(NotifyTaskEntity notifyTaskEntity);
-//
-//    int updateNotifyTaskStatusError(NotifyTaskEntity notifyTaskEntity);
-//
-//    int updateNotifyTaskStatusRetry(NotifyTaskEntity notifyTaskEntity);
+    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList();
+
+    List<NotifyTaskEntity> queryUnExecutedNotifyTaskList(String teamId);
+
+    int updateNotifyTaskStatusSuccess(String teamId);
+
+    int updateNotifyTaskStatusError(String teamId);
+
+    int updateNotifyTaskStatusRetry(String teamId);
 //
 //    boolean occupyTeamStock(String teamStockKey, String recoveryTeamStockKey, Integer target, Integer validTime);
 //
